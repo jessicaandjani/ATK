@@ -154,13 +154,6 @@
                input_index--;
            }
         });
-
-        $( document ).ready(function() {
-           $('.datepicker').pickadate({
-             selectMonths: true, // Creates a dropdown to control month
-             selectYears: 3 // Creates a dropdown of 15 years to control year
-           });
-         });
        
         $("button#submit-button").click(function(){
             var count = 1;
@@ -178,23 +171,9 @@
             count = 1;
             var counter = 0;
             $('select').each(function(){
-                if (counter > 1){
-                    var barang = $(this).find(":selected").text();
-                    $("div#inserthere" + count).html(barang);
-                    count++;
-                } else {
-                    counter++;
-                }
-            });
-            var counter = 0;
-            $("input[type='text']").each(function(){
-                if (counter > 1){
-                    var barang = $(this).select();
-                    $("div#insertnamehere" + count).html(barang);
-                    count++;
-                } else {
-                    counter++;
-                }
+				var barang = $(this).find(":selected").text();
+				$("div#inserthere" + count).html(barang);
+				count++;
             });
        });
         
