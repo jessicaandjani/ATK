@@ -14,11 +14,11 @@
         <!-- Dropdown Structure -->
         <ul id="dropdown1" class="dropdown-content white-text">
       <li><a href="usage.html">Usages</a></li>
-      <li><a href="usage.html">History</a></li>
+      <li><a href="uhistory.php">History</a></li>
     </ul>
     <ul id="dropdown2" class="dropdown-content white-text">
       <li><a href="booking.html">Start Your Booking</a></li>
-      <li><a href="booking.html">History</a></li>
+      <li><a href="bhistory.php">History</a></li>
     </ul>
   <nav class="amber darken-1" role="navigation">
     <div class="nav-wrapper container">
@@ -41,10 +41,21 @@
       </nav>
       <div class ="container">
             <div class="row">
-                <h2>Usages History</h2>
+                <h2>Booking History</h2>
             </div>
         </div>
         <div class = "container">
+          <?php
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $database = "stackexchange";
+            $connection = mysql_connect($servername, $username, $password) or die(mysql_error());
+            @mysql_select_db('atk') or die(mysql_error());
+            $query = "SELECT * FROM `t_pemakaian`";
+            $result = mysql_query($query);
+            $num = mysql_num_rows($result);
+          ?>
           <table class = "highlight centered">
               <thead>
               <tr>
@@ -52,10 +63,38 @@
                   <th>User</th>
                   <th>Items</th>
                   <th>Qty</th>
-                  <th>Usage Date</th>
-                  <th>Due Date</th>
+                  <th>Usages Date</th>
               </tr>
               </thead>
+              <tbody>
+              <tr>
+              <?php   
+                $i = 0;
+                while($i < $num) {
+                  $usage_id = mysql_result($result, $i, "ID_Pemakaian");
+                  $jumlah = mysql_result($result, $i, "Jumlah");
+                  $date_usage = mysql_result($result, $i, "Tgl_Pemakaian");
+                  $atk_id = mysql_result($result, $i, "ID_ATK");
+                  /* nama atk */
+                  $query_atk = "SELECT Jenis_ATK FROM `t_atk` WHERE (`ID_ATK` = '$atk_id')";
+                  $result_atk = mysql_query($query_atk);
+                  $atk_name = mysql_result($result_atk, 0);
+
+                  $user_id = mysql_result($result, $i, "ID_User");
+                  /* nama user */
+                  $query_user = "SELECT Nama_User FROM `t_user` WHERE (`ID_User` = '$user_id')";
+                  $result_user = mysql_query($query_user);
+                  $user_name = mysql_result($result_user, 0);
+              ?>              
+                <td><?= $usage_id ?></td>
+                <td><?= $user_name ?></td>
+                <td><?= $atk_name ?></td>
+                <td><?= $jumlah ?></td>
+                <td><?= $date_usage ?></td>
+              </tr>
+              </tbody>
+              <?php $i++; } ?>
+              <?php mysql_close(); ?> 
           </table>
       </div>
     </body>
