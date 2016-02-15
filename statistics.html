@@ -42,8 +42,18 @@
       </nav>
         <ul class ="collapsible" data-collapsible="expandable" style = "width: 50%; margin: auto; margin-top: 5%;">
             <li>
-                <div class ="collapsible-header">Usage per period</div>
-                <div style="width:90%; height:90%; margin: auto;"><canvas id="ATKChart"></canvas></div>
+                <div class ="collapsible-header">ATK usage per period</div>
+                <div style="width:90%; height:90%; margin: auto;"><canvas id="PeriodChart"></canvas></div>
+            </li>
+			<li>
+                <div class ="collapsible-header">ATK usage per user</div>
+                <div style="width:90%; height:90%; margin: auto;"><canvas id="UserChart"></canvas></div>
+            </li>
+			<li>
+                <div class ="collapsible-header">Minimum stock of ATK</div>
+                <div style="width:90%; height:90%; margin: auto;"><table>
+					
+				</table></div>
             </li>
         </ul>
         
@@ -71,9 +81,24 @@
             ]
         };
         // Get context with jQuery - using jQuery's .get() method.
-        var ctx = document.getElementById("ATKChart").getContext("2d");
+        var ctx = document.getElementById("PeriodChart").getContext("2d");
+		var ctx1 = document.getElementById("UserChart").getContext("2d");
         // This will get the first returned node in the jQuery collection.
-        var LineChartDemo = new Chart(ctx).Line(data, {
+        var LineChartPeriod = new Chart(ctx).Line(data, {
+            bezierCurve: false,
+            scaleShowVerticalLines: false,
+            scaleGridLineColor: "black",
+            animationSteps: 50,
+            responsive: true,
+            tooltipYPadding: 16,
+            tooltipCornerRadius: 0,
+            tooltipTitleFontStyle: "normal",
+            tooltipFillColor: "rgba(0,160,0,0.8)",
+            animationEasing: "easeOutBounce",
+            scaleLineColor: "black",
+            scaleFontSize: 16
+        });
+		var LineChartUser = new Chart(ctx1).Line(data, {
             bezierCurve: false,
             scaleShowVerticalLines: false,
             scaleGridLineColor: "black",

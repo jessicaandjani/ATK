@@ -10,6 +10,40 @@
         <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+		<script type = "text/javascript">
+		function validateForm() {
+			var valname = document.forms["form"]["name"].value;
+			var valatk = document.forms["form"]["jenis_atk"].value;
+			var valquantity = document.forms["form"]["quantity"].value;
+			
+			if ((valname == null || valname == "") || (valatk == null || valatk == "") || (valquantity == null || valquantity == "")) {
+				alert("All fields must be filled out.");
+				return false;
+			}
+			else {
+				$('#modal1').openModal();
+				var count = 1;
+				$("p#input_place2").remove();
+				$("p#input_place3").html("<p id=\"input_place2\"></p>");
+				$('input[type=number]').each(function(){
+					var quantity = parseInt($(this).val(),10);
+					if($.isNumeric(quantity)){
+						var input_add1 = "<div class=\"row\"><div class=\"col s2\"><h7>" + count + "</h7></div><div class=\"col s4\">" + quantity + "</div><div class=\"col s6\" id=\"inserthere" + count + "\"></div>";
+						//$("p#input_place2").html(input_add1);
+						$(input_add1).insertBefore("p#input_place2");
+						count++;
+					}
+				});
+				count = 1;
+				var counter = 0;
+				$('select').each(function(){
+					var barang = $(this).find(":selected").text();
+					$("div#inserthere" + count).html(barang);
+					count++;
+				});
+			}
+		}
+		</script>
     </head>
     <body>    
         <!-- Dropdown Structure -->
@@ -79,7 +113,7 @@
               <p id="input_place"></p>
               <!-- Add buttin-->
               <div class="fixed-action-btn" style="bottom: 45px; right: 30px;">
-                <a id="add_field" class="btn-floating btn-large red">
+                <a id="add_field" class=f"btn-floating btn-large red">
                   <i class="large material-icons">add</i>
                 </a>
               </div>
@@ -112,10 +146,10 @@
       </div>
         </form> 
 
-        <!--Sbumit Button-->          
+        <!--Submit Button-->          
         <div class="row center">
           <!-- Modal Trigger -->
-          <button class="btn waves-effect waves-light modal-trigger" data-target="modal1" type="submit" name="action" id="submit-button" value="Submit">Submit
+          <button class="btn waves-effect waves-light" type="submit" name="action" id="submit-button" value="Submit" onclick="return validateForm();">Submit
               <i class="material-icons right">send</i>
           </button>
         </div>
@@ -154,28 +188,6 @@
                input_index--;
            }
         });
-       
-        $("button#submit-button").click(function(){
-            var count = 1;
-            $("p#input_place2").remove();
-            $("p#input_place3").html("<p id=\"input_place2\"></p>");
-            $('input[type=number]').each(function(){
-                var quantity = parseInt($(this).val(),10);
-                if($.isNumeric(quantity)){
-                    var input_add1 = "<div class=\"row\"><div class=\"col s2\"><h7>" + count + "</h7></div><div class=\"col s4\">" + quantity + "</div><div class=\"col s6\" id=\"inserthere" + count + "\"></div>";
-                    /*$("p#input_place2").html(input_add1);*/
-                    $(input_add1).insertBefore("p#input_place2");
-                    count++;
-                }
-            });
-            count = 1;
-            var counter = 0;
-            $('select').each(function(){
-				var barang = $(this).find(":selected").text();
-				$("div#inserthere" + count).html(barang);
-				count++;
-            });
-       });
         
     </script>
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
