@@ -11,6 +11,7 @@
 	@mysql_select_db('atk') or die(mysql_error());
 
 	/* Stok ATK */
+<<<<<<< HEAD
 			$x = 0;
 	foreach($atk as $value){
 		$sql_stok = "SELECT `Stok_ATK` FROM `t_atk` WHERE (`ID_ATK` = '$value')";
@@ -46,7 +47,7 @@
 
 		}
 	}
-	//header("Location: /ATK/booking.html");
+	header("Location: /ATK/booking.html");
 	mysql_close();
 	
 ?>
