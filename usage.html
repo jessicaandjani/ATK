@@ -3,7 +3,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-        <title>iBH - Booking</title>
+        <title>iBH - Usages</title>
 
         <!-- CSS  -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -13,8 +13,8 @@
 		<script type = "text/javascript">
 		function validateForm() {
 			var valname = document.forms["form"]["name"].value;
-			var valatk = document.forms["form"]["jenis_atk"].value;
-			var valquantity = document.forms["form"]["quantity"].value;
+			var valatk = document.forms["form"]["jenis_atk[]"].value;
+			var valquantity = document.forms["form"]["quantity[]"].value;
 			
 			if ((valname == null || valname == "") || (valatk == null || valatk == "") || (valquantity == null || valquantity == "")) {
 				alert("All fields must be filled out.");
@@ -92,7 +92,7 @@
                   <h5>1.</h5>
                 </div>
                 <div class="input-field col s5">
-                  <select id="ATK1" name="jenis_atk">
+                  <select id="ATK1" name="jenis_atk[]">
                     <option value="" disabled selected>Choose your option</option>
                     <option value="1">Kertas HVS</option>
                     <option value="2">Pulpen</option>
@@ -105,7 +105,7 @@
                   </select>
                 </div>
                 <div class="input-field col s4">
-                  <input id="number1" type="number" min="0" class="validate" name="quantity">
+                  <input id="number1" type="number" min="0" class="validate" name="quantity[]">
                   <br><br>
                   <label for="number" data-error="wrong" data-success="right">Quantity</label>
                 </div>

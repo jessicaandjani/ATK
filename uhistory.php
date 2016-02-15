@@ -41,7 +41,7 @@
       </nav>
       <div class ="container">
             <div class="row">
-                <h2>Booking History</h2>
+                <h2>Usages History</h2>
             </div>
         </div>
         <div class = "container">
