@@ -9,11 +9,9 @@
 	$date = $_POST["date_booking"];
 	$connection = mysql_connect($servername, $username, $password) or die(mysql_error());
 	@mysql_select_db('atk') or die(mysql_error());
-
 	/* ID User */
 	$sql_user = "SELECT `ID_User` FROM `t_user` WHERE (`Nama_User` = '$user_name')";
 	$result_user = mysql_query($sql_user);
-	//var_dump($result_user);
 	if (!$result_user) {
 		die('Could not query:' . mysql_error());
 	}	
@@ -27,7 +25,6 @@
 			die('Could not query:' . mysql_error());
 		}
 		$id_user = mysql_result($result_id_user, 0);
-		//echo $id_user;
 	}
 	$sql = "INSERT INTO `t_pemesanan`(`Tgl_Pemesanan`, `Tgl_Pengambilan`, `ID_User`) VALUES (now(), '$date', '$id_user')";
 	mysql_query($sql);
@@ -42,6 +39,7 @@
 	/* Stok ATK */
 	$x = 0;
 	foreach($atk as $value){
+		echo $value;
 		$sql_stok = "SELECT `Stok_ATK` FROM `t_atk` WHERE (`ID_ATK` = '$value')";
 		$result_stok = mysql_query($sql_stok);
 		$stok_atk = mysql_result($result_stok, 0);
