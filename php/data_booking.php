@@ -36,6 +36,10 @@
 			}
 			$sql = "INSERT INTO `t_pemesanan`(`Tgl_Pemesanan`, `Jumlah`, `Tgl_Pengambilan`, `ID_ATK`, `ID_User`) VALUES (now(), '$jumlah[$x]', '$date', '$value', '$id_user')";
 			mysql_query($sql);
+			if ($x > 0){
+				$sql = "UPDATE `t_pemesanan` SET `ID_Pemesanan` = `ID_Pemesanan` - '$x' WHERE (`ID_ATK` = '$value')";
+				mysql_query($sql);
+			}
 			$sql_atk = "UPDATE `t_atk` SET `Stok_ATK` = `Stok_ATK` - '$jumlah[$x]' WHERE (`ID_ATK` = '$value')";
 			mysql_query($sql_atk);
 			$x++;
