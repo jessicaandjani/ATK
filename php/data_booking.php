@@ -11,8 +11,7 @@
 	@mysql_select_db('atk') or die(mysql_error());
 
 	/* Stok ATK */
-<<<<<<< HEAD
-			$x = 0;
+	$x = 0;
 	foreach($atk as $value){
 		$sql_stok = "SELECT `Stok_ATK` FROM `t_atk` WHERE (`ID_ATK` = '$value')";
 		$result_stok = mysql_query($sql_stok);
@@ -31,9 +30,21 @@
 			/* ID USser */
 			$sql_user = "SELECT `ID_User` FROM `t_user` WHERE (`Nama_User` = '$user_name')";
 			$result_user = mysql_query($sql_user);
-			$id_user = mysql_result($result_user, 0);
+			//var_dump($result_user);
 			if (!$result_user) {
 				die('Could not query:' . mysql_error());
+			}	
+			$id_user = mysql_result($result_user, 0);
+			if (!$id_user) {
+				$sql_new_user = "INSERT INTO `t_user`(`Nama_User`) VALUES ('$user_name')";
+				mysql_query($sql_new_user);	
+				$sql_new_id = "SELECT `ID_User` FROM `t_user` WHERE (`Nama_User` = '$user_name')";
+				$result_id_user = mysql_query($sql_user);
+				if (!$result_id_user) {
+					die('Could not query:' . mysql_error());
+				}
+				$id_user = mysql_result($result_id_user, 0);
+				//echo $id_user;
 			}
 			$sql = "INSERT INTO `t_pemesanan`(`Tgl_Pemesanan`, `Jumlah`, `Tgl_Pengambilan`, `ID_ATK`, `ID_User`) VALUES (now(), '$jumlah[$x]', '$date', '$value', '$id_user')";
 			mysql_query($sql);
@@ -44,9 +55,10 @@
 			$sql_atk = "UPDATE `t_atk` SET `Stok_ATK` = `Stok_ATK` - '$jumlah[$x]' WHERE (`ID_ATK` = '$value')";
 			mysql_query($sql_atk);
 			$x++;
-
 		}
 	}
+	$message = "Booking success! Thank you";
+	echo("<script type='text/javascript'>alert('$message');</script>");
 	header("Location: /ATK/booking.html");
 	mysql_close();
 	
