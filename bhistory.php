@@ -9,6 +9,7 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     </head>
     <body>
         <!-- Dropdown Structure -->
@@ -68,7 +69,6 @@
               </tr>
               </thead>
               <tbody>
-              <tr>
               <?php   
                 $i = 0;
                 while($i < $num) {
@@ -87,13 +87,19 @@
                   $query_user = "SELECT Nama_User FROM `t_user` WHERE (`ID_User` = '$user_id')";
                   $result_user = mysql_query($query_user);
                   $user_name = mysql_result($result_user, 0);
-              ?>              
+                  $id = "bhistory_list" . $book_id;
+              ?>         
+              <tr id="<?= $id ?>">
                 <td><?= $book_id ?></td>
                 <td><?= $user_name ?></td>
                 <td><?= $atk_name ?></td>
                 <td><?= $jumlah ?></td>
                 <td><?= $date_book ?></td>
                 <td><?= $date ?></td>
+                <td>
+                    <button class="btn waves-effect waves-light" type="submit" name="action" id="submit-button" data-id="<?= $book_id?>" value="Submit">Take
+                    </button>
+                </td>
               </tr>
               </tbody>
               <?php $i++; } ?>
@@ -101,7 +107,18 @@
           </table>
       </div>
     </body>
+
+    <!-- Script -->
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="js/materialize.js"></script>
     <script src="js/init.js"></script>
+    <script type="text/javascript">
+      $("button#submit-button").on("click", function(){
+        var listID = $(this).data("id");
+        $('tr#bhistory_list' + listID).remove();
+        $.get("php/delete_booking.php?id="+ listID, function(data, status){
+          window.location.href="/atk/bhistory.php";
+        });
+      });
+    </script>
 </html>
