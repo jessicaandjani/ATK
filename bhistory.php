@@ -3,7 +3,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-        <title>iBH - About</title>
+        <title>iBH - Booking History</title>
 
         <!-- CSS  -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -50,10 +50,10 @@
             $servername = "localhost";
             $username = "root";
             $password = "";
-            $database = "stackexchange";
+            $database = "atk";
             $connection = mysql_connect($servername, $username, $password) or die(mysql_error());
             @mysql_select_db('atk') or die(mysql_error());
-            $query = "SELECT * FROM `t_pemesanan`";
+            $query = "SELECT * FROM `t_pemesanan` NATURAL JOIN `t_pesanan`";
             $result = mysql_query($query);
             $num = mysql_num_rows($result);
           ?>
