@@ -7,6 +7,12 @@
 	$atk = $_POST["jenis_atk"];
 	$jumlah = $_POST["quantity"];
 	$date = $_POST["date_booking"];
+	if (strtotime($date) < strtotime('now')){
+		$message = "Invalid Date";
+		echo("<script type='text/javascript'>alert('$message');</script>");
+		header("Location: /ATK/booking.html");
+	}
+	exit;
 	$connection = mysql_connect($servername, $username, $password) or die(mysql_error());
 	@mysql_select_db('atk') or die(mysql_error());
 	/* ID User */
