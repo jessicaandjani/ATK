@@ -56,7 +56,7 @@
 			$sql_atk = "UPDATE `t_atk` SET `Stok_ATK` = `Stok_ATK` - '$jumlah[$x]' WHERE (`ID_ATK` = '$value')";
 			mysql_query($sql_atk);
 			$x++;
-			$message = "Booking success! Thank you";
+			$message = "Success! Thank you";
 			echo("<script type='text/javascript'>
 					alert('$message');
 					window.location.href='/atk/usage.html';
