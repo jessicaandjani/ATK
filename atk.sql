@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 15, 2016 at 07:22 PM
+-- Generation Time: Feb 16, 2016 at 05:16 PM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -37,12 +37,12 @@ CREATE TABLE `t_atk` (
 --
 
 INSERT INTO `t_atk` (`ID_ATK`, `Jenis_ATK`, `Stok_ATK`) VALUES
-(1, 'Kertas HVS', 77),
-(2, 'Pulpen', 20),
-(3, 'Spidol', 28),
-(4, 'Pensil', 20),
+(1, 'Kertas HVS', 63),
+(2, 'Pulpen', 10),
+(3, 'Spidol', 21),
+(4, 'Pensil', 10),
 (5, 'Amplop', 70),
-(6, 'Kertas Buram', 50),
+(6, 'Kertas Buram', 49),
 (7, 'Klip', 40),
 (8, 'Lakban', 0);
 
@@ -71,7 +71,15 @@ INSERT INTO `t_pemakaian` (`ID_Pemakaian`, `Tgl_Pemakaian`, `Jumlah`, `ID_ATK`, 
 (1496, '2016-02-16 00:14:16', 1, 6, 2),
 (1497, '2016-02-16 00:14:16', 3, 1, 2),
 (1498, '2016-02-16 00:20:42', 3, 3, 3),
-(1499, '2016-02-16 00:20:42', 10, 6, 3);
+(1499, '2016-02-16 00:20:42', 10, 6, 3),
+(1500, '2016-02-16 09:24:12', 2, 2, 1),
+(1501, '2016-02-16 09:24:43', 2, 1, 5),
+(1502, '2016-02-16 09:24:43', 1, 6, 5),
+(1503, '2016-02-16 09:26:17', 3, 4, 1),
+(1504, '2016-02-16 09:26:17', 3, 1, 1),
+(1505, '2016-02-16 09:42:31', 2, 1, 5),
+(1506, '2016-02-16 09:42:31', 3, 1, 5),
+(1507, '2016-02-16 09:47:41', 3, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -103,7 +111,16 @@ INSERT INTO `t_pemesanan` (`ID_Pemesanan`, `Tgl_Pemesanan`, `Tgl_Pengambilan`, `
 (17, '2016-02-15', '2016-02-15', 2),
 (18, '2016-02-15', '2016-02-26', 5),
 (42, '2016-02-15', '2016-02-25', 4),
-(43, '2016-02-15', '2016-02-25', 4);
+(43, '2016-02-15', '2016-02-25', 4),
+(47, '2016-02-16', '2016-02-04', 5),
+(48, '2016-02-16', '2016-02-04', 5),
+(49, '2016-02-16', '2016-02-10', 2),
+(50, '2016-02-16', '2016-02-05', 2),
+(52, '2016-02-16', '2016-02-03', 4),
+(53, '2016-02-16', '2016-02-03', 5),
+(56, '2016-02-16', '2016-02-20', 11),
+(57, '2016-02-16', '2016-02-19', 16),
+(58, '2016-02-16', '2016-02-17', 4);
 
 -- --------------------------------------------------------
 
@@ -124,7 +141,16 @@ CREATE TABLE `t_pesanan` (
 INSERT INTO `t_pesanan` (`ID_Pemesanan`, `ID_ATK`, `Jumlah`) VALUES
 (3, 5, 2),
 (2, 5, 5),
-(15, 2, 1);
+(15, 2, 1),
+(47, 2, 2),
+(48, 2, 3),
+(49, 3, 2),
+(50, 2, 1),
+(52, 4, 2),
+(53, 4, 2),
+(56, 3, 2),
+(57, 1, 2),
+(58, 4, 3);
 
 -- --------------------------------------------------------
 
@@ -135,20 +161,24 @@ INSERT INTO `t_pesanan` (`ID_Pemesanan`, `ID_ATK`, `Jumlah`) VALUES
 CREATE TABLE `t_user` (
   `ID_User` int(11) NOT NULL,
   `Nama_User` varchar(50) NOT NULL,
-  `Kategori_User` varchar(50) NOT NULL
+  `SID` int(11) NOT NULL,
+  `Telephone` bigint(20) NOT NULL,
+  `Email` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `t_user`
 --
 
-INSERT INTO `t_user` (`ID_User`, `Nama_User`, `Kategori_User`) VALUES
-(1, 'Cliff', 'Mahasiswa'),
-(2, 'Ben', 'Mahasiswa'),
-(3, 'Luminto', 'Mahasiswa'),
-(4, 'Jessica', 'Mahasiswa'),
-(5, 'Yoga', ''),
-(6, 'Acel', '');
+INSERT INTO `t_user` (`ID_User`, `Nama_User`, `SID`, `Telephone`, `Email`) VALUES
+(1, 'Cliff Jonathan', 13513044, 0, ''),
+(2, 'Ben Lemuel Tanasale', 13513048, 0, ''),
+(3, 'Luminto', 13513080, 81809670384, '13513080@std.stei.itb.ac.id'),
+(4, 'Jessica Andjani', 13513086, 0, ''),
+(5, 'Yoga Adrian', 13513030, 0, ''),
+(11, 'Sukuanto Tanoto', 12113030, 0, 'sukuanto@gmail.com'),
+(16, 'Angela Lynn', 13513032, 0, 'angela@gmail.com'),
+(17, 'ABC DEF', 13513040, 0, 'okdoqqpdpqdp@gmail.com');
 
 --
 -- Indexes for dumped tables
@@ -205,17 +235,17 @@ ALTER TABLE `t_atk`
 -- AUTO_INCREMENT for table `t_pemakaian`
 --
 ALTER TABLE `t_pemakaian`
-  MODIFY `ID_Pemakaian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1500;
+  MODIFY `ID_Pemakaian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1511;
 --
 -- AUTO_INCREMENT for table `t_pemesanan`
 --
 ALTER TABLE `t_pemesanan`
-  MODIFY `ID_Pemesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `ID_Pemesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 --
 -- AUTO_INCREMENT for table `t_user`
 --
 ALTER TABLE `t_user`
-  MODIFY `ID_User` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID_User` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- Constraints for dumped tables
 --

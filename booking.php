@@ -13,56 +13,56 @@
 		<script type = "text/javascript">
 		function validateForm() {
 			var valatk = document.getElementsByName("jenis_atk[]");
-      var valquantity = document.getElementsByName("quantity[]");
-      var sum = valatk.length;
-      var valname = document.forms["form"]["name"].value;
-      var valdate = document.forms["form"]["date_booking"].value;
-      for(var i = 0; i < sum; i++) {
-        if((valatk[i].value == null || valatk[i].value == "") || (valquantity[i].value == null || valquantity[i].value == "")) {
-          alert("All fields must be filled out.");
-          return false;  
-        }
-      }
-      if ((valname == null || valname == "") || (valdate == null || valdate == "")) {
-        alert("All fields must be filled out.");
-        return false;
-      }
-      else {
-        $('#modal1').openModal();
-        var count = 1;
-        $("p#input_place2").remove();
-        $("p#input_place3").html("<p id=\"input_place2\"></p>");
-        $('input[type=number]').each(function(){
-          var quantity = parseInt($(this).val(),10);
-          if($.isNumeric(quantity)){
-            var input_add1 = "<div class=\"row\"><div class=\"col s2\"><h7>" + count + "</h7></div><div class=\"col s4\">" + quantity + "</div><div class=\"col s6\" id=\"inserthere" + count + "\"></div>";
-            /*$("p#input_place2").html(input_add1);*/
-            $(input_add1).insertBefore("p#input_place2");
-            count++;
-          }
-        });
-        count = 1;
-        var counter = 0;
-        $('select').each(function(){
-          if (counter > 1){
-            var barang = $(this).find(":selected").text();
-            $("div#inserthere" + count).html(barang);
-            count++;
-          } else {
-            counter++;
-          }
-        });
-        var counter = 0;
-        $("input[type='text']").each(function(){
-          if (counter > 1){
-            var barang = $(this).select();
-            $("div#insertnamehere" + count).html(barang);
-            count++;
-          } else {
-            counter++;
-          }
-        });
-      }
+			  var valquantity = document.getElementsByName("quantity[]");
+			  var sum = valatk.length;
+			  var valname = document.forms["form"]["sid"].value;
+			  var valdate = document.forms["form"]["date_booking"].value;
+			  for(var i = 0; i < sum; i++) {
+				if((valatk[i].value == null || valatk[i].value == "") || (valquantity[i].value == null || valquantity[i].value == "")) {
+				  alert("All fields must be filled out.");
+				  return false;  
+				}
+			  }
+			  if ((valname == null || valname == "") || (valdate == null || valdate == "")) {
+				alert("All fields must be filled out.");
+				return false;
+			  }
+			  else {
+				$('#modal1').openModal();
+				var count = 1;
+				$("p#input_place2").remove();
+				$("p#input_place3").html("<p id=\"input_place2\"></p>");
+				$('input[type=number]').each(function(){
+				  var quantity = parseInt($(this).val(),10);
+				  if($.isNumeric(quantity)){
+					var input_add1 = "<div class=\"row\"><div class=\"col s2\"><h7>" + count + "</h7></div><div class=\"col s4\">" + quantity + "</div><div class=\"col s6\" id=\"inserthere" + count + "\"></div>";
+					/*$("p#input_place2").html(input_add1);*/
+					$(input_add1).insertBefore("p#input_place2");
+					count++;
+				  }
+				});
+				count = 1;
+				var counter = 0;
+				$('select').each(function(){
+				  if (counter > 1){
+					var barang = $(this).find(":selected").text();
+					$("div#inserthere" + count).html(barang);
+					count++;
+				  } else {
+					counter++;
+				  }
+				});
+				var counter = 0;
+				$("input[type='text']").each(function(){
+				  if (counter > 1){
+					var barang = $(this).select();
+					$("div#insertnamehere" + count).html(barang);
+					count++;
+				  } else {
+					counter++;
+				  }
+				});
+			  }
 		}
 		</script>
     </head>
@@ -73,7 +73,7 @@
           <li><a href="uhistory.php">History</a></li>
         </ul>
         <ul id="dropdown2" class="dropdown-content white-text">
-          <li><a href="booking.html">Start Your Booking</a></li>
+          <li><a href="SID.html">Start Your Booking</a></li>
           <li><a href="bhistory.php">History</a></li>
         </ul>
 
@@ -104,8 +104,9 @@
             <form name="form" method="POST" action="php/data_booking.php">
               <div class="row">
                 <div class="col s4">
-                  <label>Name</label>
-                  <input type="text" class="validate" name="name">
+                  <label>SID/SSN</label>
+				  <?php $sid = $_POST["sid"]; ?>
+                  <input type="text" class="validate" name="sid" id="sid" readonly="readonly" value="<?=$sid?>">
                 </div>
                 <div class="col s8">
                   <label>Book For</label>
