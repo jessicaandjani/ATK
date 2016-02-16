@@ -130,7 +130,7 @@
                   </select>
                 </div>
                 <div class="input-field col s4">
-                  <input id="number1" type="number" min="0" class="validate" name="quantity[]">
+                  <input id="number1" type="number" min="1" class="validate" name="quantity[]">
                   <br><br>
                   <label for="number" data-error="wrong" data-success="right">Quantity</label>
                 </div>
@@ -199,7 +199,7 @@
         var input_add;
         $("a#add_field").click(function(){
             input_index++;
-           var input_add = "<div id=\"book" + input_index + "\" class=\"row\"><div class=\"input-field col s1\"><h5>" + input_index + ".</h5></div><div class=\"input-field col s5\"><select name=\"jenis_atk[]\"><option value=\"\" disabled selected>Choose your option</option><option value=\"1\">Kertas HVS</option><option value=\"2\">Pulpen</option><option value=\"3\">Spidol</option><option value=\"4\">Pensil</option><option value=\"5\">Amplop</option><option value=\"6\">Kertas Buram</option><option value=\"7\">Klip</option><option value=\"8\">Lakban</option></select></div><div class=\"input-field col s4\"><input id=\"number\" type=\"number\" min=\"0\" class=\"validate\" name=\"quantity[]\"><br><br><label for=\"number\" data-error=\"wrong\" data-success=\"right\">Quantity</label></div><div class=\"input-field col s1\"><a id=\"remove_field\" data-id=\""+ input_index +"\"><h5>×</h5></a></div></div>";
+           var input_add = "<div id=\"book" + input_index + "\" class=\"row\"><div class=\"input-field col s1\"><h5>" + input_index + ".</h5></div><div class=\"input-field col s5\"><select name=\"jenis_atk[]\"><option value=\"\" disabled selected>Choose your option</option><option value=\"1\">Kertas HVS</option><option value=\"2\">Pulpen</option><option value=\"3\">Spidol</option><option value=\"4\">Pensil</option><option value=\"5\">Amplop</option><option value=\"6\">Kertas Buram</option><option value=\"7\">Klip</option><option value=\"8\">Lakban</option></select></div><div class=\"input-field col s4\"><input id=\"number\" type=\"number\" min=\"1\" class=\"validate\" name=\"quantity[]\"><br><br><label for=\"number\" data-error=\"wrong\" data-success=\"right\">Quantity</label></div><div class=\"input-field col s1\"><a id=\"remove_field\" data-id=\""+ input_index +"\"><h5>×</h5></a></div></div>";
            $(input_add).insertBefore("p#input_place");
            $('select').material_select();
         });
