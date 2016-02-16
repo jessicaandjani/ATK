@@ -52,21 +52,29 @@
 		/* Cek Stok */
 		if($stok_atk == 0) {
 			$message = "Out of order";
-			echo("<script type='text/javascript'>alert('$message');</script>");
+			echo("<script type='text/javascript'>
+					alert('$message');
+					window.history.back();
+				  </script>");
 		} else if ($stok_atk < $jumlah[$x]) {
 			$message = "Only available " . $stok_atk;
-			echo("<script type='text/javascript'>alert('$message');</script>");
+			echo("<script type='text/javascript'>
+					alert('$message');
+					window.history.back();
+				  </script>");
 		} else {
 			$sql = "INSERT INTO `t_pesanan`(`ID_Pemesanan`, `ID_ATK`, `Jumlah`) VALUES ('$id_pemesanan', '$value', '$jumlah[$x]')";
 			mysql_query($sql);
 			$sql_atk = "UPDATE `t_atk` SET `Stok_ATK` = `Stok_ATK` - '$jumlah[$x]' WHERE (`ID_ATK` = '$value')";
 			mysql_query($sql_atk);
 			$x++;
+			$message = "Booking success! Thank you";
+			echo("<script type='text/javascript'>
+					alert('$message');
+					window.location.href='/atk/booking.php';
+				  </script>");
 		}
 	}
-	$message = "Booking success! Thank you";
-	echo("<script type='text/javascript'>alert('$message');</script>");
-	header("Location: /ATK/bhistory.html");
 	mysql_close();
 	
 ?>
