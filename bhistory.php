@@ -73,9 +73,6 @@
                 $i = 0;
                 while($i < $num) {
                   $book_id = mysql_result($result, $i, "ID_pemesanan");
-                  if($i!= 0) {
-                    $book_id_before = mysql_result($result, $i-1, "ID_pemesanan");
-                  }
                   $jumlah = mysql_result($result, $i, "jumlah");
                   $date_book = mysql_result($result, $i, "Tgl_Pemesanan");
                   $date = mysql_result($result, $i, "Tgl_Pengambilan");
@@ -93,7 +90,29 @@
                   $id = "bhistory_list" . $book_id;
               ?>         
               <tr id="<?= $id ?>">
-                <?php if($book_id != $book_id_before) { ?>
+                <?php 
+                if($i!= 0) {
+                    $book_id_before = mysql_result($result, $i-1, "ID_pemesanan");
+                    if($book_id != $book_id_before) { ?>
+                      <td><?= $book_id ?></td>
+                      <td><?= $user_name ?></td>
+                      <td><?= $atk_name ?></td>
+                      <td><?= $jumlah ?></td>
+                      <td><?= $date_book ?></td>
+                      <td><?= $date ?></td>
+                      <td>
+                        <button class="btn waves-effect waves-light" type="submit" name="action" id="submit-button" data-id="<?= $book_id?>" value="Submit">Take
+                        </button>
+                      </td>
+                    <?php } else { ?>
+                      <td></td>
+                      <td></td>
+                      <td><?= $atk_name ?></td>
+                      <td><?= $jumlah ?></td>
+                      <td><?= $date_book ?></td>
+                      <td><?= $date ?></td>
+                  <?php } ?>
+                <?php } else { ?>
                   <td><?= $book_id ?></td>
                   <td><?= $user_name ?></td>
                   <td><?= $atk_name ?></td>
@@ -104,13 +123,6 @@
                     <button class="btn waves-effect waves-light" type="submit" name="action" id="submit-button" data-id="<?= $book_id?>" value="Submit">Take
                     </button>
                   </td>
-                <?php } else { ?>
-                  <td></td>
-                  <td></td>
-                  <td><?= $atk_name ?></td>
-                  <td><?= $jumlah ?></td>
-                  <td><?= $date_book ?></td>
-                  <td><?= $date ?></td>
                 <?php } ?>
               </tr>
               </tbody>
