@@ -90,7 +90,7 @@
 		$message = "Success! Thank you";
 		echo("<script type='text/javascript'>
 				alert('$message');
-			    window.location.href='/atk/bhistory.php';
+			    window.location.href='/atk/SID.html';
 			  </script>");
 	}
 	mysql_close();
