@@ -16,17 +16,6 @@
 		die('Could not query:' . mysql_error());
 	}	
 	$id_user = mysql_result($result_user, 0);
-	/*if (!$id_user) {
-		$sql_new_user = "INSERT INTO `t_user`(`Nama_User`) VALUES ('$user_name')";
-		mysql_query($sql_new_user);	
-		$sql_new_id = "SELECT `ID_User` FROM `t_user` WHERE (`Nama_User` = '$user_name')";
-		$result_id_user = mysql_query($sql_user);
-		if (!$result_id_user) {
-			die('Could not query:' . mysql_error());
-		}
-		$id_user = mysql_result($result_id_user, 0);
-	}*/
-	
 	$x = 0;
 	$habis = false;
 	$sisa = false;
@@ -71,7 +60,6 @@
 				alert('$message');
 				window.history.back();
 			 </script>");
-
 	} else {
 		$message = "Success! Thank you";
 		echo("<script type='text/javascript'>
