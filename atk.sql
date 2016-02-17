@@ -1,10 +1,9 @@
-
 -- phpMyAdmin SQL Dump
 -- version 4.5.1
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 16, 2016 at 05:16 PM
+-- Generation Time: Feb 17, 2016 at 04:39 PM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -38,12 +37,12 @@ CREATE TABLE `t_atk` (
 --
 
 INSERT INTO `t_atk` (`ID_ATK`, `Jenis_ATK`, `Stok_ATK`) VALUES
-(1, 'Kertas HVS', 63),
-(2, 'Pulpen', 10),
-(3, 'Spidol', 21),
-(4, 'Pensil', 10),
-(5, 'Amplop', 70),
-(6, 'Kertas Buram', 49),
+(1, 'Kertas HVS', 61),
+(2, 'Pulpen', 9),
+(3, 'Spidol', 20),
+(4, 'Pensil', 12),
+(5, 'Amplop', 67),
+(6, 'Kertas Buram', 48),
 (7, 'Klip', 40),
 (8, 'Lakban', 0);
 
@@ -80,7 +79,12 @@ INSERT INTO `t_pemakaian` (`ID_Pemakaian`, `Tgl_Pemakaian`, `Jumlah`, `ID_ATK`, 
 (1504, '2016-02-16 09:26:17', 3, 1, 1),
 (1505, '2016-02-16 09:42:31', 2, 1, 5),
 (1506, '2016-02-16 09:42:31', 3, 1, 5),
-(1507, '2016-02-16 09:47:41', 3, 3, 2);
+(1507, '2016-02-16 09:47:41', 3, 3, 2),
+(1515, '2016-02-17 20:20:00', 1, 1, 78),
+(1516, '2016-02-17 20:23:31', 1, 6, 48),
+(1517, '2016-02-17 22:14:20', 2, 4, 80),
+(1518, '2016-02-17 22:14:20', 1, 1, 80),
+(1519, '2016-02-17 22:15:53', 2, 4, 20);
 
 -- --------------------------------------------------------
 
@@ -116,12 +120,7 @@ INSERT INTO `t_pemesanan` (`ID_Pemesanan`, `Tgl_Pemesanan`, `Tgl_Pengambilan`, `
 (47, '2016-02-16', '2016-02-04', 5),
 (48, '2016-02-16', '2016-02-04', 5),
 (49, '2016-02-16', '2016-02-10', 2),
-(50, '2016-02-16', '2016-02-05', 2),
-(52, '2016-02-16', '2016-02-03', 4),
-(53, '2016-02-16', '2016-02-03', 5),
-(56, '2016-02-16', '2016-02-20', 11),
-(57, '2016-02-16', '2016-02-19', 16),
-(58, '2016-02-16', '2016-02-17', 4);
+(50, '2016-02-16', '2016-02-05', 2);
 
 -- --------------------------------------------------------
 
@@ -146,12 +145,7 @@ INSERT INTO `t_pesanan` (`ID_Pemesanan`, `ID_ATK`, `Jumlah`) VALUES
 (47, 2, 2),
 (48, 2, 3),
 (49, 3, 2),
-(50, 2, 1),
-(52, 4, 2),
-(53, 4, 2),
-(56, 3, 2),
-(57, 1, 2),
-(58, 4, 3);
+(50, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -324,17 +318,17 @@ ALTER TABLE `t_atk`
 -- AUTO_INCREMENT for table `t_pemakaian`
 --
 ALTER TABLE `t_pemakaian`
-  MODIFY `ID_Pemakaian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1511;
+  MODIFY `ID_Pemakaian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1520;
 --
 -- AUTO_INCREMENT for table `t_pemesanan`
 --
 ALTER TABLE `t_pemesanan`
-  MODIFY `ID_Pemesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `ID_Pemesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 --
 -- AUTO_INCREMENT for table `t_user`
 --
 ALTER TABLE `t_user`
-  MODIFY `ID_User` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `ID_User` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 --
 -- Constraints for dumped tables
 --

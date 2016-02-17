@@ -122,9 +122,11 @@
                       <td><?= $date ?></td>
                       <td>
                         <?php if (strtotime($date) < strtotime('now')) { ?>
-                          <a class="waves-effect waves-light red btn modal-trigger" href="#modal2">Expired</a>
+                          <button class="btn waves-effect waves-light red" type="submit" name="action" id="submit-button2" data-id="<?= $book_id?>" value="Submit">Expired
+                          </button>
                         <?php } else { ?>
-                          <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Take</a>
+                          <button class="btn waves-effect waves-light green" type="submit" name="action" id="submit-button1" data-id="<?= $book_id?>" value="Submit">Take
+                          </button>
                         <?php } ?>
                       </td>
                     <?php } else { ?>
@@ -145,10 +147,12 @@
                   <td><?= $date_book ?></td>
                   <td><?= $date ?></td>
                   <td>
-                    <?php if (strtotime($date) < strtotime('now')) { ?>
-                      <a class="waves-effect waves-light red btn modal-trigger" href="#modal2">Expired</a>
+                     <?php if (strtotime($date) < strtotime('now')) { ?>
+                      <button class="btn waves-effect waves-light red" type="submit" name="action" id="submit-button2" data-id="<?= $book_id?>" value="Submit">Expired
+                      </button>
                     <?php } else { ?>
-                      <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Take</a>
+                      <button class="btn waves-effect waves-light green" type="submit" name="action" id="submit-button1" data-id="<?= $book_id?>" value="Submit">Take
+                      </button>
                     <?php } ?>
                   </td>
                 <?php } ?>
@@ -166,27 +170,6 @@
           </a>
         </div>
 		</div>
-		
-		<!-- Modal Structure -->
-      <div id="modal1" class="modal">
-        <div class="modal-content">
-          <h5>Are you sure want to take this items ?</h5>
-        </div>
-        <div class="modal-footer">
-          <a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat">No</a>
-          <a class=" modal-action modal-close waves-effect waves-green btn-flat" id="submit-button1" data-id="<?= $book_id?>">Yes</a>
-        </div>  
-      </div>
-       <!-- Modal Structure 2 -->
-      <div id="modal2" class="modal">
-        <div class="modal-content">
-          <h5>Are you sure want to delete this items ?</h5>
-        </div>
-        <div class="modal-footer">
-          <a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat">No</a>
-          <a class="modal-action modal-close waves-effect waves-green btn-flat" id="submit-button2" data-id="<?= $book_id?>">Yes</a>
-        </div>  
-      </div>
     </body>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="js/materialize.js"></script>
