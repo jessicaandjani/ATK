@@ -124,7 +124,7 @@
                           <button class="btn waves-effect waves-light red" type="submit" name="action" id="submit-button2" data-id="<?= $book_id?>" value="Submit">Expired
                           </button>
                         <?php } else { ?>
-                          <button class="btn waves-effect waves-light red" type="submit" name="action" id="submit-button1" data-id="<?= $book_id?>" value="Submit">Take
+                          <button class="btn waves-effect waves-light" type="submit" name="action" id="submit-button1" data-id="<?= $book_id?>" value="Submit">Take
                           </button>
                         <?php } ?>
                       </td>
@@ -150,7 +150,7 @@
                       <button class="btn waves-effect waves-light red" type="submit" name="action" id="submit-button2" data-id="<?= $book_id?>" value="Submit">Expired
                       </button>
                     <?php } else { ?>
-                      <button class="btn waves-effect waves-light red" type="submit" name="action" id="submit-button1" data-id="<?= $book_id?>" value="Submit">Take
+                      <button class="btn waves-effect waves-light" type="submit" name="action" id="submit-button1" data-id="<?= $book_id?>" value="Submit">Take
                       </button>
                     <?php } ?>
                   </td>

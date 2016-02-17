@@ -64,7 +64,7 @@
 		$message = "Success! Thank you";
 		echo("<script type='text/javascript'>
 				alert('$message');
-			    window.location.href='/atk/uSID.html';
+			    window.location.href='/atk/uhistory.php';
 			  </script>");
 	}
 	mysql_close();
