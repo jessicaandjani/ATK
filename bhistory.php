@@ -3,7 +3,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-        <title>iBH - About</title>
+        <title>iBH - Booking History</title>
 
         <!-- CSS  -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -18,7 +18,7 @@
       <li><a href="uhistory.php">History</a></li>
     </ul>
     <ul id="dropdown2" class="dropdown-content white-text">
-      <li><a href="booking.html">Start Your Booking</a></li>
+      <li><a href="SID.html">Start Your Booking</a></li>
       <li><a href="bhistory.php">History</a></li>
     </ul>
   <nav class="amber darken-1" role="navigation">
@@ -50,10 +50,10 @@
             $servername = "localhost";
             $username = "root";
             $password = "";
-            $database = "stackexchange";
+            $database = "atk";
             $connection = mysql_connect($servername, $username, $password) or die(mysql_error());
             @mysql_select_db('atk') or die(mysql_error());
-            $query = "SELECT * FROM `t_pemesanan`";
+            $query = "SELECT * FROM `t_pemesanan` NATURAL JOIN `t_pesanan`";
             $result = mysql_query($query);
             $num = mysql_num_rows($result);
           ?>
@@ -90,21 +90,53 @@
                   $id = "bhistory_list" . $book_id;
               ?>         
               <tr id="<?= $id ?>">
-                <td><?= $book_id ?></td>
-                <td><?= $user_name ?></td>
-                <td><?= $atk_name ?></td>
-                <td><?= $jumlah ?></td>
-                <td><?= $date_book ?></td>
-                <td><?= $date ?></td>
-                <td>
-                    <button class="btn waves-effect waves-light" type="submit" name="action" id="submit-button" data-id="<?= $book_id?>" value="Submit">Take
-                    </button>
-                </td>
+                <?php 
+                if($i!= 0) {
+                    $book_id_before = mysql_result($result, $i-1, "ID_pemesanan");
+                    if($book_id != $book_id_before) { ?>
+                      <td><?= $book_id ?></td>
+                      <td><?= $user_name ?></td>
+                      <td><?= $atk_name ?></td>
+                      <td><?= $jumlah ?></td>
+                      <td><?= $date_book ?></td>
+                      <td><?= $date ?></td>
+                      <td>
+                        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Take</a>
+                      </td>
+                    <?php } else { ?>
+                      <td></td>
+                      <td></td>
+                      <td><?= $atk_name ?></td>
+                      <td><?= $jumlah ?></td>
+                      <td><?= $date_book ?></td>
+                      <td><?= $date ?></td>
+                  <?php } ?>
+                <?php } else { ?>
+                  <td><?= $book_id ?></td>
+                  <td><?= $user_name ?></td>
+                  <td><?= $atk_name ?></td>
+                  <td><?= $jumlah ?></td>
+                  <td><?= $date_book ?></td>
+                  <td><?= $date ?></td>
+                  <td>
+                    <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Take</a>
+                  </td>
+                <?php } ?>
               </tr>
               </tbody>
               <?php $i++; } ?>
               <?php mysql_close(); ?> 
           </table>
+      </div>
+      <!-- Modal Structure -->
+      <div id="modal1" class="modal">
+        <div class="modal-content">
+          <h5>Are you sure want to take this items ?</h5>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">No</a>
+          <a class=" modal-action modal-close waves-effect waves-green btn-flat" id="submit-button" data-id="<?= $book_id?>">Yes</a>
+        </div>  
       </div>
     </body>
 
@@ -112,8 +144,15 @@
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="js/materialize.js"></script>
     <script src="js/init.js"></script>
+    
+    <script>
+      $(document).ready(function(){
+        $('.modal-trigger').leanModal();
+      });
+    </script>
+
     <script type="text/javascript">
-      $("button#submit-button").on("click", function(){
+      $("a#submit-button").on("click", function(){
         var listID = $(this).data("id");
         $('tr#bhistory_list' + listID).remove();
         $.get("php/delete_booking.php?id="+ listID, function(data, status){

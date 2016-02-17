@@ -3,7 +3,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-        <title>iBH - About</title>
+        <title>iBH - Usages History</title>
 
         <!-- CSS  -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -17,7 +17,7 @@
       <li><a href="uhistory.php">History</a></li>
     </ul>
     <ul id="dropdown2" class="dropdown-content white-text">
-      <li><a href="booking.html">Start Your Booking</a></li>
+      <li><a href="SID.html">Start Your Booking</a></li>
       <li><a href="bhistory.php">History</a></li>
     </ul>
   <nav class="amber darken-1" role="navigation">
@@ -41,7 +41,7 @@
       </nav>
       <div class ="container">
             <div class="row">
-                <h2>Booking History</h2>
+                <h2>Usages History</h2>
             </div>
         </div>
         <div class = "container">
@@ -49,7 +49,7 @@
             $servername = "localhost";
             $username = "root";
             $password = "";
-            $database = "stackexchange";
+            $database = "atk";
             $connection = mysql_connect($servername, $username, $password) or die(mysql_error());
             @mysql_select_db('atk') or die(mysql_error());
             $query = "SELECT * FROM `t_pemakaian`";

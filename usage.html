@@ -3,7 +3,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-        <title>iBH - Booking</title>
+        <title>iBH - Usages</title>
 
         <!-- CSS  -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -12,36 +12,42 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 		<script type = "text/javascript">
 		function validateForm() {
-			var valname = document.forms["form"]["name"].value;
-			var valatk = document.forms["form"]["jenis_atk"].value;
-			var valquantity = document.forms["form"]["quantity"].value;
-			
-			if ((valname == null || valname == "") || (valatk == null || valatk == "") || (valquantity == null || valquantity == "")) {
-				alert("All fields must be filled out.");
-				return false;
-			}
-			else {
-				$('#modal1').openModal();
-				var count = 1;
-				$("p#input_place2").remove();
-				$("p#input_place3").html("<p id=\"input_place2\"></p>");
-				$('input[type=number]').each(function(){
-					var quantity = parseInt($(this).val(),10);
-					if($.isNumeric(quantity)){
-						var input_add1 = "<div class=\"row\"><div class=\"col s2\"><h7>" + count + "</h7></div><div class=\"col s4\">" + quantity + "</div><div class=\"col s6\" id=\"inserthere" + count + "\"></div>";
-						//$("p#input_place2").html(input_add1);
-						$(input_add1).insertBefore("p#input_place2");
-						count++;
-					}
-				});
-				count = 1;
-				var counter = 0;
-				$('select').each(function(){
-					var barang = $(this).find(":selected").text();
-					$("div#inserthere" + count).html(barang);
-					count++;
-				});
-			}
+      var valatk = document.getElementsByName("jenis_atk[]");
+      var valquantity = document.getElementsByName("quantity[]");
+      var sum = valatk.length;
+      var valname = document.forms["form"]["name"].value;
+      for(var i = 0; i < sum; i++) {
+        if((valatk[i].value == null || valatk[i].value == "") || (valquantity[i].value == null || valquantity[i].value == "")) {
+          alert("All fields must be filled out.");
+          return false;  
+        }
+      }
+      if ((valname == null || valname == "")) {
+        alert("All fields must be filled out.");
+        return false;
+      }
+      else {
+        $('#modal1').openModal();
+        var count = 1;
+        $("p#input_place2").remove();
+        $("p#input_place3").html("<p id=\"input_place2\"></p>");
+        $('input[type=number]').each(function(){
+          var quantity = parseInt($(this).val(),10);
+          if($.isNumeric(quantity)){
+            var input_add1 = "<div class=\"row\"><div class=\"col s2\"><h7>" + count + "</h7></div><div class=\"col s4\">" + quantity + "</div><div class=\"col s6\" id=\"inserthere" + count + "\"></div>";
+            //$("p#input_place2").html(input_add1);
+            $(input_add1).insertBefore("p#input_place2");
+            count++;
+          }
+        });
+        count = 1;
+        var counter = 0;
+        $('select').each(function(){
+          var barang = $(this).find(":selected").text();
+          $("div#inserthere" + count).html(barang);
+          count++;
+        });
+      }
 		}
 		</script>
     </head>
@@ -52,7 +58,7 @@
           <li><a href="uhistory.php">History</a></li>
         </ul>
         <ul id="dropdown2" class="dropdown-content white-text">
-          <li><a href="booking.html">Start Your Booking</a></li>
+          <li><a href="SID.html">Start Your Booking</a></li>
           <li><a href="bhistory.php">History</a></li>
         </ul>
 
@@ -92,7 +98,7 @@
                   <h5>1.</h5>
                 </div>
                 <div class="input-field col s5">
-                  <select id="ATK1" name="jenis_atk">
+                  <select id="ATK1" name="jenis_atk[]">
                     <option value="" disabled selected>Choose your option</option>
                     <option value="1">Kertas HVS</option>
                     <option value="2">Pulpen</option>
@@ -105,7 +111,7 @@
                   </select>
                 </div>
                 <div class="input-field col s4">
-                  <input id="number1" type="number" min="0" class="validate" name="quantity">
+                  <input id="number1" type="number" min="1" class="validate" name="quantity[]">
                   <br><br>
                   <label for="number" data-error="wrong" data-success="right">Quantity</label>
                 </div>
@@ -113,7 +119,7 @@
               <p id="input_place"></p>
               <!-- Add buttin-->
               <div class="fixed-action-btn" style="bottom: 45px; right: 30px;">
-                <a id="add_field" class=f"btn-floating btn-large red">
+                <a id="add_field" class="btn-floating btn-large red">
                   <i class="large material-icons">add</i>
                 </a>
               </div>
@@ -174,7 +180,7 @@
         var input_add;
         $("a#add_field").click(function(){
             input_index++;
-           var input_add = "<div id=\"book" + input_index + "\" class=\"row\"><div class=\"input-field col s1\"><h5>" + input_index + ".</h5></div><div class=\"input-field col s5\"><select name=\"jenis_atk\"><option value=\"\" disabled selected>Choose your option</option><option value=\"1\">Kertas HVS</option><option value=\"2\">Pulpen</option><option value=\"3\">Spidol</option><option value=\"4\">Pensil</option><option value=\"5\">Amplop</option><option value=\"6\">Kertas Buram</option><option value=\"7\">Klip</option><option value=\"8\">Lakban</option></select></div><div class=\"input-field col s4\"><input id=\"number\" type=\"number\" min=\"0\" class=\"validate\" name=\"quantity\"><br><br><label for=\"number\" data-error=\"wrong\" data-success=\"right\">Quantity</label></div><div class=\"input-field col s1\"><a id=\"remove_field\" data-id=\""+ input_index +"\"><h5>×</h5></a></div></div>";
+           var input_add = "<div id=\"book" + input_index + "\" class=\"row\"><div class=\"input-field col s1\"><h5>" + input_index + ".</h5></div><div class=\"input-field col s5\"><select name=\"jenis_atk[]\"><option value=\"\" disabled selected>Choose your option</option><option value=\"1\">Kertas HVS</option><option value=\"2\">Pulpen</option><option value=\"3\">Spidol</option><option value=\"4\">Pensil</option><option value=\"5\">Amplop</option><option value=\"6\">Kertas Buram</option><option value=\"7\">Klip</option><option value=\"8\">Lakban</option></select></div><div class=\"input-field col s4\"><input id=\"number\" type=\"number\" min=\"1\" class=\"validate\" name=\"quantity[]\"><br><br><label for=\"number\" data-error=\"wrong\" data-success=\"right\">Quantity</label></div><div class=\"input-field col s1\"><a id=\"remove_field\" data-id=\""+ input_index +"\"><h5>×</h5></a></div></div>";
            $(input_add).insertBefore("p#input_place");
            $('select').material_select();
         });
