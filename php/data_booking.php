@@ -10,9 +10,9 @@
 	
 	if (strtotime($date) < strtotime('now')){
 		$message = "Invalid Date";
-		echo("<script type='text/javascript'>alert('$message');</script>");
-		header("HTTP/1.1 307 Temporary Redirect");
-		header("Location: /ATK/booking.php");
+		echo("<script type='text/javascript'>alert('$message');
+				window.history.back();
+			  </script>");		
 		exit;
 	}
 	$connection = mysql_connect($servername, $username, $password) or die(mysql_error());
