@@ -75,7 +75,7 @@
               <thead>
               <tr>
                   <th>No</th>
-				  <th>SID/SSN</th>
+				          <th>SID/SSN</th>
                   <th>User</th>
                   <th>Items</th>
                   <th>Qty</th>
@@ -102,8 +102,8 @@
                   $query_user = "SELECT Nama_User FROM `t_user` WHERE (`ID_User` = '$user_id')";
                   $result_user = mysql_query($query_user);
                   $user_name = mysql_result($result_user, 0);
-				  $query_user = "SELECT SID FROM `t_user` WHERE (`ID_User` = '$user_id')";
-				  $result_user = mysql_query($query_user);
+				          $query_user = "SELECT SID FROM `t_user` WHERE (`ID_User` = '$user_id')";
+				          $result_user = mysql_query($query_user);
                   $user_sid = mysql_result($result_user, 0);
                   $id = "bhistory_list" . $book_id;
               ?>         
@@ -113,22 +113,24 @@
                     $book_id_before = mysql_result($result, $i-1, "ID_pemesanan");
                     if($book_id != $book_id_before) { ?>
                       <td><?= $i+1 ?></td>
-					  <td><?= $user_sid ?></td>
+					            <td><?= $user_sid ?></td>
                       <td><?= $user_name ?></td>
                       <td><?= $atk_name ?></td>
                       <td><?= $jumlah ?></td>
                       <td><?= $date_book ?></td>
                       <td><?= $date ?></td>
                       <td>
-                        <?php if (strtotime($date) < strtotime('now')) { ?>
-                          <a class="waves-effect waves-light red btn modal-trigger" href="#modal2">Expired</a>
+                         <?php if (strtotime($date) < strtotime('now')) { ?>
+                          <button class="btn waves-effect waves-light red" type="submit" name="action" id="submit-button2" data-id="<?= $book_id?>" value="Submit">Expired
+                          </button>
                         <?php } else { ?>
-                          <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Take</a>
+                          <button class="btn waves-effect waves-light red" type="submit" name="action" id="submit-button1" data-id="<?= $book_id?>" value="Submit">Take
+                          </button>
                         <?php } ?>
                       </td>
                     <?php } else { ?>
                       <td></td>
-					  <td></td>
+					            <td></td>
                       <td></td>
                       <td><?= $atk_name ?></td>
                       <td><?= $jumlah ?></td>
@@ -137,7 +139,7 @@
                   <?php } ?>
                 <?php } else { ?>
                   <td><?= $i+1 ?></td>
-				  <td><?= $user_sid ?></td>
+				          <td><?= $user_sid ?></td>
                   <td><?= $user_name ?></td>
                   <td><?= $atk_name ?></td>
                   <td><?= $jumlah ?></td>
@@ -145,9 +147,11 @@
                   <td><?= $date ?></td>
                   <td>
                     <?php if (strtotime($date) < strtotime('now')) { ?>
-                      <a class="waves-effect waves-light red btn modal-trigger" href="#modal2">Expired</a>
+                      <button class="btn waves-effect waves-light red" type="submit" name="action" id="submit-button2" data-id="<?= $book_id?>" value="Submit">Expired
+                      </button>
                     <?php } else { ?>
-                      <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Take</a>
+                      <button class="btn waves-effect waves-light red" type="submit" name="action" id="submit-button1" data-id="<?= $book_id?>" value="Submit">Take
+                      </button>
                     <?php } ?>
                   </td>
                 <?php } ?>
@@ -156,26 +160,6 @@
               <?php $i++; } ?>
               <?php mysql_close(); ?> 
           </table>
-      </div>
-      <!-- Modal Structure -->
-      <div id="modal1" class="modal">
-        <div class="modal-content">
-          <h5>Are you sure want to take this items ?</h5>
-        </div>
-        <div class="modal-footer">
-          <a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat">No</a>
-          <a class=" modal-action modal-close waves-effect waves-green btn-flat" id="submit-button1" data-id="<?= $book_id?>">Yes</a>
-        </div>  
-      </div>
-       <!-- Modal Structure 2 -->
-      <div id="modal2" class="modal">
-        <div class="modal-content">
-          <h5>Are you sure want to delete this items ?</h5>
-        </div>
-        <div class="modal-footer">
-          <a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat">No</a>
-          <a class="modal-action modal-close waves-effect waves-green btn-flat" id="submit-button2" data-id="<?= $book_id?>">Yes</a>
-        </div>  
       </div>
     </body>
 
@@ -191,7 +175,7 @@
     </script>
 
      <script type="text/javascript">
-      $("a#submit-button1").on("click", function(){
+      $("button#submit-button1").on("click", function(){
         var listID = $(this).data("id");
         $('tr#bhistory_list' + listID).remove();
         $.get("php/delete_booking.php?id="+ listID, function(data, status){
@@ -201,7 +185,7 @@
     </script>
 
      <script type="text/javascript">
-      $("a#submit-button2").on("click", function(){
+      $("button#submit-button2").on("click", function(){
         console.log("hello");
         var listID = $(this).data("id");
         $('tr#bhistory_list' + listID).remove();
