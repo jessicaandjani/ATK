@@ -15,18 +15,15 @@
       var valatk = document.getElementsByName("jenis_atk[]");
       var valquantity = document.getElementsByName("quantity[]");
       var sum = valatk.length;
-      var valname = document.forms["form"]["name"].value;
+      var valid = false;
       for(var i = 0; i < sum; i++) {
         if((valatk[i].value == null || valatk[i].value == "") || (valquantity[i].value == null || valquantity[i].value == "")) {
           alert("All fields must be filled out.");
+          valid = true;
           return false;  
         }
       }
-      if ((valname == null || valname == "")) {
-        alert("All fields must be filled out.");
-        return false;
-      }
-      else {
+      if (valid == false) {
         $('#modal1').openModal();
         var count = 1;
         $("p#input_place2").remove();
