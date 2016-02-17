@@ -163,7 +163,7 @@
           <h5>Are you sure want to take this items ?</h5>
         </div>
         <div class="modal-footer">
-          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">No</a>
+          <a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat">No</a>
           <a class=" modal-action modal-close waves-effect waves-green btn-flat" id="submit-button1" data-id="<?= $book_id?>">Yes</a>
         </div>  
       </div>
@@ -173,8 +173,8 @@
           <h5>Are you sure want to delete this items ?</h5>
         </div>
         <div class="modal-footer">
-          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">No</a>
-          <a class=" modal-action modal-close waves-effect waves-green btn-flat" id="submit-button2" data-id="<?= $book_id?>">Yes</a>
+          <a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat">No</a>
+          <a class="modal-action modal-close waves-effect waves-green btn-flat" id="submit-button2" data-id="<?= $book_id?>">Yes</a>
         </div>  
       </div>
     </body>

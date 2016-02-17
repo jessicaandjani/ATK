@@ -121,7 +121,11 @@
                       <td><?= $date_book ?></td>
                       <td><?= $date ?></td>
                       <td>
-                        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Take</a>
+                        <?php if (strtotime($date) < strtotime('now')) { ?>
+                          <a class="waves-effect waves-light red btn modal-trigger" href="#modal2">Expired</a>
+                        <?php } else { ?>
+                          <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Take</a>
+                        <?php } ?>
                       </td>
                     <?php } else { ?>
                       <td></td>
@@ -141,7 +145,11 @@
                   <td><?= $date_book ?></td>
                   <td><?= $date ?></td>
                   <td>
-                    <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Take</a>
+                    <?php if (strtotime($date) < strtotime('now')) { ?>
+                      <a class="waves-effect waves-light red btn modal-trigger" href="#modal2">Expired</a>
+                    <?php } else { ?>
+                      <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Take</a>
+                    <?php } ?>
                   </td>
                 <?php } ?>
               </tr>
@@ -158,8 +166,54 @@
           </a>
         </div>
 		</div>
+		
+		<!-- Modal Structure -->
+      <div id="modal1" class="modal">
+        <div class="modal-content">
+          <h5>Are you sure want to take this items ?</h5>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat">No</a>
+          <a class=" modal-action modal-close waves-effect waves-green btn-flat" id="submit-button1" data-id="<?= $book_id?>">Yes</a>
+        </div>  
+      </div>
+       <!-- Modal Structure 2 -->
+      <div id="modal2" class="modal">
+        <div class="modal-content">
+          <h5>Are you sure want to delete this items ?</h5>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat">No</a>
+          <a class="modal-action modal-close waves-effect waves-green btn-flat" id="submit-button2" data-id="<?= $book_id?>">Yes</a>
+        </div>  
+      </div>
     </body>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="js/materialize.js"></script>
     <script src="js/init.js"></script>
+	<script>
+      $(document).ready(function(){
+        $('.modal-trigger').leanModal();
+      });
+    </script>
+
+     <script type="text/javascript">
+      $("a#submit-button1").on("click", function(){
+        var listID = $(this).data("id");
+        $('tr#bhistory_list' + listID).remove();
+        $.get("php/delete_booking.php?id="+ listID, function(data, status){
+          window.location.href="/atk/bhistory.php";
+        });
+      });
+    </script>
+
+     <script type="text/javascript">
+      $("a#submit-button2").on("click", function(){
+        console.log("hello");
+        var listID = $(this).data("id");
+        $('tr#bhistory_list' + listID).remove();
+        $.get("php/expired.php?id="+ listID, function(data, status){
+          window.location.href="/atk/bhistory.php";
+        });
+      });
 </html>
