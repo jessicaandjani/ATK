@@ -45,6 +45,20 @@
                 <h2>Booking History</h2>
             </div>
         </div>
+		<div class="container">
+		<nav class = "amber darken-1">
+			<div class="nav-wrapper">
+			  <form action = "searchresult.php" method="POST">
+				<div class="input-field">
+				  <input id="search" name="search" type="search" required="">
+				  <label for="search"><i class="material-icons">search</i></label>
+				  <!-- I've put "red-text" class to emphasize -->
+				  <i class="material-icons white-text">close</i>
+				</div>
+			  </form>
+			</div>
+		  </nav>
+		</div>
         <div class = "container">
           <?php
             $servername = "localhost";
@@ -61,6 +75,7 @@
               <thead>
               <tr>
                   <th>No</th>
+				  <th>SID/SSN</th>
                   <th>User</th>
                   <th>Items</th>
                   <th>Qty</th>
@@ -87,6 +102,9 @@
                   $query_user = "SELECT Nama_User FROM `t_user` WHERE (`ID_User` = '$user_id')";
                   $result_user = mysql_query($query_user);
                   $user_name = mysql_result($result_user, 0);
+				  $query_user = "SELECT SID FROM `t_user` WHERE (`ID_User` = '$user_id')";
+				  $result_user = mysql_query($query_user);
+                  $user_sid = mysql_result($result_user, 0);
                   $id = "bhistory_list" . $book_id;
               ?>         
               <tr id="<?= $id ?>">
@@ -94,7 +112,8 @@
                 if($i!= 0) {
                     $book_id_before = mysql_result($result, $i-1, "ID_pemesanan");
                     if($book_id != $book_id_before) { ?>
-                      <td><?= $book_id ?></td>
+                      <td><?= $i+1 ?></td>
+					  <td><?= $user_sid ?></td>
                       <td><?= $user_name ?></td>
                       <td><?= $atk_name ?></td>
                       <td><?= $jumlah ?></td>
@@ -105,6 +124,7 @@
                       </td>
                     <?php } else { ?>
                       <td></td>
+					  <td></td>
                       <td></td>
                       <td><?= $atk_name ?></td>
                       <td><?= $jumlah ?></td>
@@ -112,7 +132,8 @@
                       <td><?= $date ?></td>
                   <?php } ?>
                 <?php } else { ?>
-                  <td><?= $book_id ?></td>
+                  <td><?= $i+1 ?></td>
+				  <td><?= $user_sid ?></td>
                   <td><?= $user_name ?></td>
                   <td><?= $atk_name ?></td>
                   <td><?= $jumlah ?></td>

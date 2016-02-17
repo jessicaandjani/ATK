@@ -41,13 +41,13 @@
       </nav>
       <div class ="container">
             <div class="row">
-                <h2>Usages History</h2>
+                <h2>Booking History</h2>
             </div>
         </div>
 		<div class="container">
 		<nav class = "amber darken-1">
 			<div class="nav-wrapper">
-			  <form action="searchuresult.php" method="POST">
+			  <form action="searchresult.php" method="POST">
 				<div class="input-field">
 				  <input id="search" name="search" type="search" required>
 				  <label for="search"><i class="material-icons">search</i></label>
@@ -66,7 +66,8 @@
             $database = "atk";
             $connection = mysql_connect($servername, $username, $password) or die(mysql_error());
             @mysql_select_db('atk') or die(mysql_error());
-            $query = "SELECT * FROM `t_pemakaian`";
+			$search_query = $_POST["search"];
+            $query = "SELECT * FROM `t_user` NATURAL JOIN `t_pemesanan` NATURAL JOIN `t_atk` NATURAL JOIN `t_pesanan` WHERE `SID` LIKE '%$search_query%' OR `Nama_User` LIKE '%$search_query%' OR `Jenis_ATK` LIKE '%$search_query%' OR `Tgl_Pengambilan` LIKE '%$search_query%'";
             $result = mysql_query($query);
             $num = mysql_num_rows($result);
           ?>
@@ -78,7 +79,8 @@
                   <th>User</th>
                   <th>Items</th>
                   <th>Qty</th>
-                  <th>Usages Date</th>
+                  <th>Booking Date</th>
+                  <th>Due Date</th>
               </tr>
               </thead>
               <tbody>
@@ -86,9 +88,10 @@
               <?php   
                 $i = 0;
                 while($i < $num) {
-                  $usage_id = mysql_result($result, $i, "ID_Pemakaian");
-                  $jumlah = mysql_result($result, $i, "Jumlah");
-                  $date_usage = mysql_result($result, $i, "Tgl_Pemakaian");
+                  $book_id = mysql_result($result, $i, "ID_pemesanan");
+                  $jumlah = mysql_result($result, $i, "jumlah");
+                  $date_book = mysql_result($result, $i, "Tgl_Pemesanan");
+                  $date = mysql_result($result, $i, "Tgl_Pengambilan");
                   $atk_id = mysql_result($result, $i, "ID_ATK");
                   /* nama atk */
                   $query_atk = "SELECT Jenis_ATK FROM `t_atk` WHERE (`ID_ATK` = '$atk_id')";
@@ -101,21 +104,60 @@
                   $result_user = mysql_query($query_user);
                   $user_name = mysql_result($result_user, 0);
 				  $query_user = "SELECT SID FROM `t_user` WHERE (`ID_User` = '$user_id')";
-                  $result_user = mysql_query($query_user);
+				  $result_user = mysql_query($query_user);
                   $user_sid = mysql_result($result_user, 0);
-              ?>              
-                <td><?= $i+1 ?></td>
-				<td><?= $user_sid ?></td>
-                <td><?= $user_name ?></td>
-                <td><?= $atk_name ?></td>
-                <td><?= $jumlah ?></td>
-                <td><?= $date_usage ?></td>
+                  $id = "bhistory_list" . $book_id;
+              ?>         
+              <tr id="<?= $id ?>">
+                <?php 
+                if($i!= 0) {
+                    $book_id_before = mysql_result($result, $i-1, "ID_pemesanan");
+                    if($book_id != $book_id_before) { ?>
+                      <td><?= $i+1 ?></td>
+					  <td><?= $user_sid ?></td>
+                      <td><?= $user_name ?></td>
+                      <td><?= $atk_name ?></td>
+                      <td><?= $jumlah ?></td>
+                      <td><?= $date_book ?></td>
+                      <td><?= $date ?></td>
+                      <td>
+                        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Take</a>
+                      </td>
+                    <?php } else { ?>
+                      <td></td>
+					  <td></td>
+                      <td></td>
+                      <td><?= $atk_name ?></td>
+                      <td><?= $jumlah ?></td>
+                      <td><?= $date_book ?></td>
+                      <td><?= $date ?></td>
+                  <?php } ?>
+                <?php } else { ?>
+                  <td><?= $i+1 ?></td>
+				  <td><?= $user_sid ?></td>
+                  <td><?= $user_name ?></td>
+                  <td><?= $atk_name ?></td>
+                  <td><?= $jumlah ?></td>
+                  <td><?= $date_book ?></td>
+                  <td><?= $date ?></td>
+                  <td>
+                    <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Take</a>
+                  </td>
+                <?php } ?>
               </tr>
               </tbody>
               <?php $i++; } ?>
               <?php mysql_close(); ?> 
           </table>
       </div>
+	  <br><br>
+	  <div class="container">
+	  <div class="row center">
+			<a class="btn waves-effect waves-light" href="bhistory.php">Clear
+              <i class="material-icons right">send</i>
+          </a>
+        </div>
+		</div>
     </body>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="js/materialize.js"></script>

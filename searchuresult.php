@@ -66,7 +66,8 @@
             $database = "atk";
             $connection = mysql_connect($servername, $username, $password) or die(mysql_error());
             @mysql_select_db('atk') or die(mysql_error());
-            $query = "SELECT * FROM `t_pemakaian`";
+			$search_query = $_POST["search"];
+            $query = "SELECT * FROM `t_user` NATURAL JOIN `t_pemakaian` NATURAL JOIN `t_atk` WHERE `SID` LIKE '%$search_query%' OR `Nama_User` LIKE '%$search_query%' OR `Jenis_ATK` LIKE '%$search_query%'";
             $result = mysql_query($query);
             $num = mysql_num_rows($result);
           ?>
@@ -116,6 +117,14 @@
               <?php mysql_close(); ?> 
           </table>
       </div>
+	  <br><br>
+	  <div class="container">
+	  <div class="row center">
+			<a class="btn waves-effect waves-light" href="uhistory.php">Clear
+              <i class="material-icons right">send</i>
+          </a>
+        </div>
+		</div>
     </body>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="js/materialize.js"></script>
