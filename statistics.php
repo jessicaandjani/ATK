@@ -20,7 +20,7 @@
             @mysql_select_db('atk') or die(mysql_error());
 			if (isset($_GET["name"])) {
             $nama = $_GET["name"];
-			$query1 = "SELECT * FROM `t_pemakaian` NATURAL JOIN `t_user` NATURAL JOIN `t_atk` WHERE `Nama_User` = '$nama'";
+			$query1 = "SELECT * FROM `t_user` NATURAL JOIN `t_pemakaian` NATURAL JOIN `t_atk` WHERE `SID` LIKE '%$nama%' OR `Nama_User` LIKE '%$nama%'";
 			$result1 = mysql_query($query1);
 			if ($result1)
 				$num1 = mysql_num_rows($result1);
@@ -62,16 +62,34 @@
         <ul class ="collapsible" data-collapsible="expandable" style = "width: 50%; margin: auto; margin-top: 5%;">
             <li>
                 <div class ="collapsible-header">ATK usage per period</div>
-                <div style="width:90%; height:90%; margin: auto;">
-					<label>ATK</label><br>
-					<form><input type="text" name="atk" style="width:88%;"><button class="btn waves-effect waves-light" style="width:12%;"><i class="material-icons right">send</i></button></form>
+                <!--<div style="width:90%; height:90%; margin: auto;" class="input-field">-->
+				<div class="row">
+					<label class="center">ATK</label><br>
+					<form>
+					<div class="input-field col s10">
+					<select id="atk" name="atk">
+						<option value="" disabled selected>Choose your option</option>
+						<option value="1">Kertas HVS</option>
+						<option value="2">Pulpen</option>
+						<option value="3">Spidol</option>
+						<option value="4">Pensil</option>
+						<option value="5">Amplop</option>
+						<option value="6">Kertas Buram</option>
+						<option value="7">Klip</option>
+						<option value="8">Lakban</option>
+					  </select>
+					  </div>
+					  <div class="input-field col s2">
+						<button class="btn waves-effect waves-light"><i class="material-icons right">send</i></button></form>
+					  </div>
+					<!--<input type="text" name="atk" style="width:88%;"><button class="btn waves-effect waves-light" style="width:12%;"><i class="material-icons right">send</i></button></form>-->
 					<canvas id="PeriodChart"></canvas>
 				</div>
             </li>
 			<li>
                 <div class ="collapsible-header">ATK usage per user</div>
                 <div style="width:90%; height:90%; margin: auto;">
-					<label>User name</label><br>
+					<label>SID/SSN/Name</label><br>
 					<form><input type="text" name="name" style="width:88%;"><button class="btn waves-effect waves-light" style="width:12%;"><i class="material-icons right">send</i></button></form>
 					<canvas id="UserChart"></canvas>
 				</div>
@@ -100,7 +118,7 @@
 											$sum = $sum + mysql_result($result2, $j, "Jumlah");
 										}
 										$avg = $sum/$num2;
-										echo '<td>' . $avg . '</td></tr>';
+										echo '<td>' . round($avg) . '</td></tr>';
 									}
 									else
 										echo '<td>0</td></tr>';
@@ -119,6 +137,11 @@
     <script src="js/init.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+	<script>
+        $(document).ready(function() {
+            $('select').material_select();
+        });
+    </script>
 	<script>
         $( document ).ready(function() {
            $('.datepicker').pickadate({
@@ -144,7 +167,7 @@
 			$val10 = 0;
 			if (isset($_GET["atk"])) {
 				$jenisatk = $_GET["atk"];
-				$query = "SELECT * FROM `t_atk` WHERE `Jenis_ATK` = '$jenisatk'";
+				$query = "SELECT * FROM `t_atk` WHERE `ID_ATK` = '$jenisatk'";
 				$result = mysql_query($query);
 				if ($result)
 					$idatk = mysql_result($result, 0, "ID_ATK");
@@ -180,12 +203,12 @@
             datasets: [
                 {
                     label: "ATK Usage per Period",
-                    fillColor: "rgba(220,220,220,0.2)",
-					strokeColor: "rgba(220,220,220,1)",
-					pointColor: "rgba(220,220,220,1)",
+                    fillColor: "rgba(200,200,200,0.8)",
+					strokeColor: "rgba(100,100,100,1)",
+					pointColor: "rgba(100,100,100,1)",
 					pointStrokeColor: "#fff",
 					pointHighlightFill: "#fff",
-					pointHighlightStroke: "rgba(220,220,220,1)",
+					pointHighlightStroke: "rgba(80,80,80,1)",
                     data: [<?php echo $val1 . ',' . $val2 . ',' . $val3 . ',' . $val4 . ',' . $val5 . ',' . $val6 . ',' . $val7 . ',' . $val8 . ',' . $val9 . ',' . $val10;?>]
                 }
             ]
@@ -214,7 +237,7 @@
 							else if (mysql_result($result1, $i, "ID_ATK") == 8) $lakban = $lakban + mysql_result($result1, $i, "Jumlah");
 						}
 					}
-					else
+					else {
 						$hvs = 0;
 						$pulpen = 0;
 						$spidol = 0;
@@ -222,7 +245,8 @@
 						$amplop = 0;
 						$burem = 0;
 						$klip = 0;
-						$lakban = 0;?>
+						$lakban = 0;
+					}?>
             
 			{
 				value: <?php echo $hvs?>,
