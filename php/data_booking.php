@@ -11,7 +11,8 @@
 	if (strtotime($date) < strtotime('now')){
 		$message = "Invalid Date";
 		echo("<script type='text/javascript'>alert('$message');</script>");
-		header("Location: /ATK/booking.html");
+		header("HTTP/1.1 307 Temporary Redirect");
+		header("Location: /ATK/booking.php");
 		exit;
 	}
 	$connection = mysql_connect($servername, $username, $password) or die(mysql_error());
@@ -89,7 +90,7 @@
 		$message = "Success! Thank you";
 		echo("<script type='text/javascript'>
 				alert('$message');
-			    window.location.href='/atk/usage.html';
+			    window.location.href='/atk/bhistory.php';
 			  </script>");
 	}
 	mysql_close();
