@@ -81,6 +81,7 @@
                   <th>Qty</th>
                   <th>Booking Date</th>
                   <th>Due Date</th>
+				  <th>Status</th>
               </tr>
               </thead>
               <tbody>
@@ -125,7 +126,7 @@
                           <button class="btn waves-effect waves-light red" type="submit" name="action" id="submit-button2" data-id="<?= $book_id?>" value="Submit">Expired
                           </button>
                         <?php } else { ?>
-                          <button class="btn waves-effect waves-light" type="submit" name="action" id="submit-button1" data-id="<?= $book_id?>" value="Submit">Take
+                          <button class="btn waves-effect waves-light" type="submit" name="action" id="submit-button1" data-id="<?= $book_id?>" value="Submit">Healthy
                           </button>
                         <?php } ?>
                       </td>
@@ -151,7 +152,7 @@
                       <button class="btn waves-effect waves-light red" type="submit" name="action" id="submit-button2" data-id="<?= $book_id?>" value="Submit">Expired
                       </button>
                     <?php } else { ?>
-                      <button class="btn waves-effect waves-light" type="submit" name="action" id="submit-button1" data-id="<?= $book_id?>" value="Submit">Take
+                      <button class="btn waves-effect waves-light" type="submit" name="action" id="submit-button1" data-id="<?= $book_id?>" value="Submit">Healthy
                       </button>
                     <?php } ?>
                   </td>
@@ -180,8 +181,8 @@
       });
     </script>
 
-     <script type="text/javascript">
-      $("a#submit-button1").on("click", function(){
+      <script type="text/javascript">
+      $("button#submit-button1").on("click", function(){
         var listID = $(this).data("id");
         $('tr#bhistory_list' + listID).remove();
         $.get("php/delete_booking.php?id="+ listID, function(data, status){
@@ -191,7 +192,7 @@
     </script>
 
      <script type="text/javascript">
-      $("a#submit-button2").on("click", function(){
+      $("button#submit-button2").on("click", function(){
         console.log("hello");
         var listID = $(this).data("id");
         $('tr#bhistory_list' + listID).remove();
@@ -199,4 +200,5 @@
           window.location.href="/atk/bhistory.php";
         });
       });
+    </script>
 </html>
