@@ -8,6 +8,8 @@
 	$sid = $_POST["sid"];
 	$telephone = $_POST["telephone"];
 	$email = $_POST["email"];
+	$pageid = $_POST["pageid"];
+	var_dump ($pageid);
 	$name = $first_name . " " . $last_name;
 	$connection = mysql_connect($servername, $username, $password) or die(mysql_error());
 	@mysql_select_db('atk') or die(mysql_error());
@@ -29,7 +31,14 @@
 			die('Could not query:' . mysql_error());
 		}	
 	}
-	header("Location: /ATK/booking.php");
-	mysql_close();
+	if ($pageid == 'booking'){
+		header("HTTP/1.1 307 Temporary Redirect");
+		header("Location: /ATK/booking.php");
+	} else if ($pageid = 'usage'){
+		header("HTTP/1.1 307 Temporary Redirect");
+		header("Location: /ATK/usage.php");
+	}
 	
+	mysql_close();
+	 
 ?>
