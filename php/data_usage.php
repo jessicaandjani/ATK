@@ -47,24 +47,20 @@
 			mysql_query($sql_atk);
 			$x++;
 		}
+		$atk_id = $value;
 	}
 	if($habis == true) {
-		$message = "Out of order " . $atk_habis;
 		echo("<script type='text/javascript'> 
-				alert('$message');
-				window.history.back();
+				window.location.href='/atk/alert.php?id=1&atk=$atk_id';
 			  </script>");
 	} else if ($sisa == true) {
-		$message = $atk_sisa . " Only available " . $stok_atk;
 		echo("<script type='text/javascript'>
-				alert('$message');
-				window.history.back();
+				window.location.href='/atk/alert.php?id=2&atk=$atk_id&stok=$stok_atk';
 			 </script>");
 	} else {
 		$message = "Success! Thank you";
 		echo("<script type='text/javascript'>
-				alert('$message');
-			    window.location.href='/atk/uhistory.php';
+				window.location.href='/atk/alert.php?id=4&atk=$atk_id';
 			  </script>");
 	}
 	mysql_close();
