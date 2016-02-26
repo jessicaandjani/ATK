@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 4.4.14
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 17, 2016 at 04:39 PM
--- Server version: 10.1.9-MariaDB
--- PHP Version: 5.6.15
+-- Generation Time: Feb 17, 2016 at 06:47 PM
+-- Server version: 5.6.26
+-- PHP Version: 5.6.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -26,24 +26,24 @@ SET time_zone = "+00:00";
 -- Table structure for table `t_atk`
 --
 
-CREATE TABLE `t_atk` (
+CREATE TABLE IF NOT EXISTS `t_atk` (
   `ID_ATK` int(11) NOT NULL,
   `Jenis_ATK` varchar(50) NOT NULL,
   `Stok_ATK` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `t_atk`
 --
 
 INSERT INTO `t_atk` (`ID_ATK`, `Jenis_ATK`, `Stok_ATK`) VALUES
-(1, 'Kertas HVS', 61),
-(2, 'Pulpen', 9),
-(3, 'Spidol', 20),
-(4, 'Pensil', 12),
-(5, 'Amplop', 67),
-(6, 'Kertas Buram', 48),
-(7, 'Klip', 40),
+(1, 'Kertas HVS', 42),
+(2, 'Pulpen', 5),
+(3, 'Spidol', 2),
+(4, 'Pensil', 2),
+(5, 'Amplop', 60),
+(6, 'Kertas Buram', 42),
+(7, 'Klip', 35),
 (8, 'Lakban', 0);
 
 -- --------------------------------------------------------
@@ -52,39 +52,74 @@ INSERT INTO `t_atk` (`ID_ATK`, `Jenis_ATK`, `Stok_ATK`) VALUES
 -- Table structure for table `t_pemakaian`
 --
 
-CREATE TABLE `t_pemakaian` (
+CREATE TABLE IF NOT EXISTS `t_pemakaian` (
   `ID_Pemakaian` int(11) NOT NULL,
   `Tgl_Pemakaian` datetime NOT NULL,
   `Jumlah` int(11) NOT NULL,
   `ID_ATK` int(11) NOT NULL,
   `ID_User` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1525 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `t_pemakaian`
 --
 
 INSERT INTO `t_pemakaian` (`ID_Pemakaian`, `Tgl_Pemakaian`, `Jumlah`, `ID_ATK`, `ID_User`) VALUES
-(1493, '2016-02-16 00:12:00', 2, 3, 2),
-(1494, '2016-02-16 00:12:00', 1, 2, 2),
-(1495, '2016-02-16 00:13:26', 3, 4, 2),
-(1496, '2016-02-16 00:14:16', 1, 6, 2),
-(1497, '2016-02-16 00:14:16', 3, 1, 2),
-(1498, '2016-02-16 00:20:42', 3, 3, 3),
-(1499, '2016-02-16 00:20:42', 10, 6, 3),
-(1500, '2016-02-16 09:24:12', 2, 2, 1),
-(1501, '2016-02-16 09:24:43', 2, 1, 5),
-(1502, '2016-02-16 09:24:43', 1, 6, 5),
-(1503, '2016-02-16 09:26:17', 3, 4, 1),
-(1504, '2016-02-16 09:26:17', 3, 1, 1),
-(1505, '2016-02-16 09:42:31', 2, 1, 5),
-(1506, '2016-02-16 09:42:31', 3, 1, 5),
-(1507, '2016-02-16 09:47:41', 3, 3, 2),
-(1515, '2016-02-17 20:20:00', 1, 1, 78),
-(1516, '2016-02-17 20:23:31', 1, 6, 48),
-(1517, '2016-02-17 22:14:20', 2, 4, 80),
-(1518, '2016-02-17 22:14:20', 1, 1, 80),
-(1519, '2016-02-17 22:15:53', 2, 4, 20);
+(1, '2016-01-01 00:01:00', 8, 1, 1),
+(2, '2016-01-02 00:02:00', 7, 2, 1),
+(3, '2016-01-03 00:03:00', 6, 3, 1),
+(4, '2016-01-04 00:04:00', 5, 4, 1),
+(5, '2016-01-05 00:05:00', 4, 5, 1),
+(6, '2016-01-06 00:06:00', 3, 6, 1),
+(7, '2016-01-07 00:07:00', 2, 7, 1),
+(8, '2016-01-08 00:08:00', 1, 8, 1),
+(9, '2016-01-09 00:09:00', 1, 1, 2),
+(10, '2016-01-10 00:10:00', 2, 2, 2),
+(11, '2016-01-11 00:11:00', 3, 3, 2),
+(12, '2016-01-12 00:12:00', 4, 4, 2),
+(13, '2016-01-13 00:13:00', 5, 5, 2),
+(14, '2016-01-14 00:14:00', 6, 6, 2),
+(15, '2016-01-15 00:15:00', 7, 7, 2),
+(16, '2016-01-16 00:16:00', 8, 8, 2),
+(17, '2016-01-17 00:17:00', 8, 1, 3),
+(18, '2016-01-18 00:18:00', 7, 2, 3),
+(19, '2016-01-19 00:19:00', 6, 3, 3),
+(20, '2016-01-20 00:20:00', 5, 4, 3),
+(21, '2016-01-21 00:21:00', 4, 5, 3),
+(22, '2016-01-22 00:22:00', 3, 6, 3),
+(23, '2016-01-23 00:23:00', 2, 7, 3),
+(24, '2016-01-24 00:01:00', 1, 8, 3),
+(25, '2016-01-25 00:02:00', 1, 1, 4),
+(26, '2016-01-26 00:03:00', 2, 2, 4),
+(27, '2016-01-27 00:04:00', 3, 3, 4),
+(28, '2016-01-28 00:05:00', 4, 4, 4),
+(29, '2016-01-29 00:06:00', 5, 5, 4),
+(30, '2016-01-30 00:07:00', 6, 6, 4),
+(1493, '2016-02-16 00:12:00', 2, 3, 5),
+(1494, '2016-02-16 00:12:00', 1, 2, 6),
+(1495, '2016-02-16 00:13:26', 3, 4, 7),
+(1496, '2016-02-16 00:14:16', 1, 6, 8),
+(1497, '2016-02-16 00:14:16', 3, 1, 9),
+(1498, '2016-02-16 00:20:42', 3, 3, 10),
+(1499, '2016-02-16 00:20:42', 10, 6, 11),
+(1500, '2016-02-16 09:24:12', 2, 2, 12),
+(1501, '2016-02-16 09:24:43', 2, 1, 13),
+(1502, '2016-02-16 09:24:43', 1, 6, 14),
+(1503, '2016-02-16 09:26:17', 3, 4, 15),
+(1504, '2016-02-16 09:26:17', 3, 1, 16),
+(1505, '2016-02-16 09:42:31', 2, 1, 17),
+(1506, '2016-02-16 09:42:31', 3, 1, 18),
+(1507, '2016-02-16 09:47:41', 3, 3, 19),
+(1515, '2016-02-17 20:20:00', 1, 1, 20),
+(1516, '2016-02-17 20:23:31', 1, 6, 30),
+(1517, '2016-02-17 22:14:20', 2, 4, 40),
+(1518, '2016-02-17 22:14:20', 1, 1, 50),
+(1519, '2016-02-17 22:15:53', 2, 4, 60),
+(1520, '2016-02-18 00:29:39', 5, 1, 44),
+(1521, '2016-02-18 00:29:39', 1, 7, 44),
+(1522, '2016-02-18 00:29:39', 2, 2, 44),
+(1523, '2016-02-18 00:29:39', 2, 4, 44),
+(1524, '2016-02-18 00:37:31', 7, 3, 80);
 
 -- --------------------------------------------------------
 
@@ -92,12 +127,12 @@ INSERT INTO `t_pemakaian` (`ID_Pemakaian`, `Tgl_Pemakaian`, `Jumlah`, `ID_ATK`, 
 -- Table structure for table `t_pemesanan`
 --
 
-CREATE TABLE `t_pemesanan` (
+CREATE TABLE IF NOT EXISTS `t_pemesanan` (
   `ID_Pemesanan` int(11) NOT NULL,
   `Tgl_Pemesanan` date NOT NULL,
   `Tgl_Pengambilan` date NOT NULL,
   `ID_User` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `t_pemesanan`
@@ -120,7 +155,21 @@ INSERT INTO `t_pemesanan` (`ID_Pemesanan`, `Tgl_Pemesanan`, `Tgl_Pengambilan`, `
 (47, '2016-02-16', '2016-02-04', 5),
 (48, '2016-02-16', '2016-02-04', 5),
 (49, '2016-02-16', '2016-02-10', 2),
-(50, '2016-02-16', '2016-02-05', 2);
+(50, '2016-02-16', '2016-02-05', 2),
+(65, '2016-02-18', '2016-02-26', 44),
+(66, '2016-02-18', '2016-02-24', 80),
+(68, '2016-02-18', '2016-02-23', 3),
+(69, '2016-02-18', '2016-02-29', 56),
+(70, '2016-02-18', '2016-02-22', 18),
+(71, '2016-02-18', '2016-02-28', 52),
+(72, '2016-02-18', '2016-02-25', 30),
+(73, '2016-02-18', '2016-02-22', 30),
+(74, '2016-02-18', '2016-02-27', 48),
+(75, '2016-02-18', '2016-02-28', 84),
+(76, '2016-02-18', '2016-02-19', 2),
+(77, '2016-02-18', '2016-02-22', 47),
+(78, '2016-02-18', '2016-02-29', 86),
+(79, '2016-02-18', '2016-02-28', 80);
 
 -- --------------------------------------------------------
 
@@ -128,7 +177,7 @@ INSERT INTO `t_pemesanan` (`ID_Pemesanan`, `Tgl_Pemesanan`, `Tgl_Pengambilan`, `
 -- Table structure for table `t_pesanan`
 --
 
-CREATE TABLE `t_pesanan` (
+CREATE TABLE IF NOT EXISTS `t_pesanan` (
   `ID_Pemesanan` int(11) NOT NULL,
   `ID_ATK` int(11) NOT NULL,
   `Jumlah` int(11) NOT NULL
@@ -145,7 +194,26 @@ INSERT INTO `t_pesanan` (`ID_Pemesanan`, `ID_ATK`, `Jumlah`) VALUES
 (47, 2, 2),
 (48, 2, 3),
 (49, 3, 2),
-(50, 2, 1);
+(50, 2, 1),
+(65, 3, 3),
+(65, 7, 2),
+(66, 3, 7),
+(68, 1, 2),
+(69, 4, 2),
+(70, 5, 5),
+(71, 6, 3),
+(73, 6, 1),
+(74, 1, 1),
+(74, 2, 1),
+(74, 3, 1),
+(74, 4, 1),
+(75, 5, 2),
+(75, 7, 2),
+(75, 2, 1),
+(76, 1, 1),
+(77, 6, 2),
+(78, 4, 5),
+(79, 1, 10);
 
 -- --------------------------------------------------------
 
@@ -153,13 +221,13 @@ INSERT INTO `t_pesanan` (`ID_Pemesanan`, `ID_ATK`, `Jumlah`) VALUES
 -- Table structure for table `t_user`
 --
 
-CREATE TABLE `t_user` (
+CREATE TABLE IF NOT EXISTS `t_user` (
   `ID_User` int(11) NOT NULL,
   `Nama_User` varchar(50) NOT NULL,
   `SID` int(11) NOT NULL,
   `Telephone` bigint(20) NOT NULL,
   `Email` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `t_user`
@@ -313,22 +381,22 @@ ALTER TABLE `t_user`
 -- AUTO_INCREMENT for table `t_atk`
 --
 ALTER TABLE `t_atk`
-  MODIFY `ID_ATK` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID_ATK` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `t_pemakaian`
 --
 ALTER TABLE `t_pemakaian`
-  MODIFY `ID_Pemakaian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1520;
+  MODIFY `ID_Pemakaian` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1525;
 --
 -- AUTO_INCREMENT for table `t_pemesanan`
 --
 ALTER TABLE `t_pemesanan`
-  MODIFY `ID_Pemesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `ID_Pemesanan` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=80;
 --
 -- AUTO_INCREMENT for table `t_user`
 --
 ALTER TABLE `t_user`
-  MODIFY `ID_User` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+  MODIFY `ID_User` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=97;
 --
 -- Constraints for dumped tables
 --

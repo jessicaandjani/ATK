@@ -59,7 +59,7 @@
           <li><a href="SID.html">Start Your Booking</a></li>
           <li><a href="bhistory.php">History</a></li>
         </ul>
-
+		<div class = "navbar-fixed">
         <nav class="amber darken-1" role="navigation">
           <div class="nav-wrapper container">
             <a id="logo-container" href="index.html" class="brand-logo white-text">iBH</a>
@@ -79,6 +79,7 @@
             <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
           </div>
         </nav>
+		</div>
         
         <div class ="container">
             <div class="row">
@@ -116,8 +117,8 @@
                 </div>
               </div>  
               <p id="input_place"></p>
-              <!-- Add buttin-->
-              <div class="fixed-action-btn" style="bottom: 45px; right: 30px;">
+              <!-- Add button-->
+              <div class="fixed-action-btn" style="bottom: 70px; right: 100px;">
                 <a id="add_field" class="btn-floating btn-large red">
                   <i class="large material-icons">add</i>
                 </a>

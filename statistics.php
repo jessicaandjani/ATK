@@ -40,13 +40,14 @@
       <li><a href="SID.html">Start Your Booking</a></li>
       <li><a href="bhistory.php">History</a></li>
     </ul>
+	<div class = "navbar-fixed">
   <nav class="amber darken-1" role="navigation">
     <div class="nav-wrapper container">
       <a id="logo-container" href="index.html" class="brand-logo white-text">iBH</a>
       <ul class="right hide-on-med-and-down">
         <li><a class="dropdown-button white-text" data-activates="dropdown2"><i class="material-icons left">dialpad</i><i class="material-icons right">arrow_drop_down</i>Booking Transactions</a></li>
         <li><a class="dropdown-button white-text" data-activates="dropdown1"><i class="material-icons left">trending_up</i><i class="material-icons right">arrow_drop_down</i>Usages Transactions</a></li>
-        <li><a href="statistics.html" class="white-text"><i class="material-icons left">equalizer</i>Statistics</a></li>
+        <li><a href="statistics.php" class="white-text"><i class="material-icons left">equalizer</i>Statistics</a></li>
         <li><a href="about.html" class="white-text"><i class="material-icons left">supervisor_account</i>About</a></li>
       </ul>
 
@@ -59,11 +60,12 @@
           <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
         </div>
       </nav>
+	  </div>
         <ul class ="collapsible" data-collapsible="expandable" style = "width: 50%; margin: auto; margin-top: 5%;">
             <li>
                 <div class ="collapsible-header">ATK usage per period</div>
                 <!--<div style="width:90%; height:90%; margin: auto;" class="input-field">-->
-				<div class="row">
+				<div style="width:90%; height:90%; margin: auto;" class="row">
 					<label class="center">ATK</label><br>
 					<form>
 					<div class="input-field col s10">
@@ -135,7 +137,7 @@
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="js/materialize.js"></script>
     <script src="js/init.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js"></script>
+    <script src="js/Chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
 	<script>
         $(document).ready(function() {

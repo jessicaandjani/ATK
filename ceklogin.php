@@ -5,7 +5,7 @@
         header("Location: index.html");
         die();
     } else {
-        header("Location: login.php?wrongpassword");
+        header("Location: login.html?wrongpassword");
         die();
     }
 ?>
